@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     fetchBreeds().then (a => {
-        let x = Object.keys(a)
-
+        let x = Object.keys(a) //get object keys of the API object and turn into an array called x
+        console.log(a);
         x.forEach(Breed => {
             let list = document.createElement('li');
             list.innerHTML = `${Breed}`; //remove li here to remove the extra dot points `<li>${Breed}<li>`;
@@ -42,8 +42,41 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     })
 
+    //wait for DOM to load before performing these operations!
+    const selectBreed = document.getElementById('breed-dropdown')
+    selectBreed.addEventListener('change', filterBreed);
+
+    function filterBreed() {
+    let x = selectBreed;
+    let filterChoice = x.options[x.selectedIndex].text; //get all options array, get selected index and the text inside it
+    console.log(`${filterChoice}`)
+    updateBreed(filterChoice);
+
+    function updateBreed(x) {
+        //remove all children
+        let deleteList = document.getElementById('dog-breeds');
+        deleteList.innerHTML = '';
+        console.log("filterChoice was selected")
+
+        //add back a filtered list
+    }
+}
+
 })
 
+
+
+
+
+// function updateBreedList(x) {
+//     let ul = document.querySelector('#dog-breeds');
+//     removeChildren(ul);
+//     x.forEach(breed => addBreed(breed))
+// }
+
+// function filterBreedWithStartingLetter(letter) {
+
+// }
 
 
 
